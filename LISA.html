@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine 💖</title>
+
+  <style>
+    * { box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      overflow: hidden;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 20px;
+      animation: float 8s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    .card, .container {
+      background: #fff;
+      padding: 40px 35px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+      width: 360px;
+      position: relative;
+      animation: pop 0.8s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .emoji {
+      font-size: 70px;
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      to { transform: scale(1.1); }
+    }
+
+    h1 { font-size: 22px; margin: 15px 0 25px; }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #yesBtn {
+      background: #ff4d88;
+      color: white;
+      box-shadow: 0 10px 20px rgba(255,77,136,0.4);
+    }
+
+    #yesBtn:hover { transform: scale(1.1); }
+
+    #noBtn { background: #eee; }
+
+    .hint {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #777;
+    }
+
+    /* YES PAGE */
+    .yes-page {
+      display: none;
+      animation: pop 0.9s ease;
+    }
+
+    .hug {
+      font-size: 90px;
+      animation: hug 1.5s infinite alternate;
+    }
+
+    @keyframes hug {
+      to { transform: scale(1.2); }
+    }
+
+    p { font-size: 18px; }
+  </style>
+</head>
+
+<body>
+
+<script>
+  for (let i = 0; i < 20; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = '❤';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = 5 + Math.random() * 5 + 's';
+    document.body.appendChild(heart);
+  }
+</script>
+
+<!-- FIRST PAGE -->
+<div class="card" id="firstPage">
+  <div class="emoji">🐱💗</div>
+  <h1>Will you be my Valentine?</h1>
+  <div class="buttons">
+    <button id="yesBtn">Yes 💕</button>
+    <button id="noBtn">No</button>
+  </div>
+  <div class="hint">(No is a little shy 😈)</div>
+</div>
+
+<!-- YES PAGE -->
+<div class="container yes-page" id="yesPage">
+  <div class="hug">🤗🌸💞</div>
+  <h2>Yay! She said YES 💕</h2>
+  <p>
+    Congratulations LISA!<br><br>
+    This moment just became a beautiful memory ✨<br><br>
+    You are my today, my tomorrow, and my forever.<br>
+    Thank you for being my wife,<br>
+    my love, my best friend.<br><br>
+    I love you endlessly ❤️💖
+  </p>
+</div>
+
+<script>
+  const noBtn = document.getElementById('noBtn');
+  const yesBtn = document.getElementById('yesBtn');
+  const firstPage = document.getElementById('firstPage');
+  const yesPage = document.getElementById('yesPage');
+
+  noBtn.addEventListener('mouseover', () => {
+    const x = Math.random() * 300 - 150;
+    const y = Math.random() * 300 - 150;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  });
+
+  yesBtn.addEventListener('click', () => {
+    firstPage.style.display = 'none';
+    yesPage.style.display = 'block';
+    document.body.style.background =
+      'linear-gradient(135deg, #ff758c, #ff7eb3)';
+  });
+</script>
+
+</body>
+</html>
